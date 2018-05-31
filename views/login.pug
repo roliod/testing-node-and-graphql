@@ -1,0 +1,13 @@
+extends layout
+
+block content
+  h1= 'Login'
+
+  form(method='GET' action='#')
+    input#username(type='text', placeholder='Enter Username' name='username')
+    br
+    input#password(type='password', placeholder='Enter Password' name='password')
+    br
+    button(type='submit') Login
+
+  a(href='/') Back Home
