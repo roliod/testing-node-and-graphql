@@ -43,6 +43,9 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+//bcrypt
+const bcrypt = require('bcrypt');
+
 //db config
 const db = require('knex') ({
   client: 'mysql',
