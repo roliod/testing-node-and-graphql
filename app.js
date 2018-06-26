@@ -13,6 +13,18 @@ var usersRouter = require('./routes/api/v1/users');
 
 var app = express();
 
+//db config
+db = require('knex') ({
+  client: 'mysql',
+  version: '7.2',
+  connection: {
+    host : process.env.DB_HOST,
+    user : process.env.DB_USERNAME,
+    password : process.env.DB_PASSWORD,
+    database : process.env.DB_DATABASE
+  }
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
@@ -41,21 +53,6 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
-});
-
-//bcrypt
-const bcrypt = require('bcrypt');
-
-//db config
-const db = require('knex') ({
-  client: 'mysql',
-  version: '7.2',
-  connection: {
-    host : process.env.DB_HOST,
-    user : process.env.DB_USERNAME,
-    password : process.env.DB_PASSWORD,
-    database : process.env.DB_DATABASE
-  }
 });
 
 module.exports = app;

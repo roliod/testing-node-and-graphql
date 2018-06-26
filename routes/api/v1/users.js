@@ -6,13 +6,21 @@ router.get('/', function(req, res, next) {
 
   res.setHeader('Content-Type', 'application/json');
 
-  var response = JSON.stringify({
-    'test': 1,
-    'test2': 2
+  db.table('users')
+  .select('username', 'first_name', 'last_name', 'email')
+  .then(function(data) {
+
+    var msg = (data.length == 0) ? '': data;
+
+    var response = JSON.stringify({
+      'message' : msg,
+      'status' : 'success'
+    });
+
+    res.send(response);
+
   });
 
-  res.send(response);
-  // res.render('users/index', {title: 'User List'});
 });
 
 module.exports = router;
