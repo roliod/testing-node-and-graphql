@@ -5,7 +5,7 @@ var { graphql, buildSchema } = require('graphql');
 router.get('/', function(req, res, next) {
 
   res.setHeader('Content-Type', 'application/json');
-  
+
   db.table('users')
   .select('username', 'first_name', 'last_name', 'email')
   .then(function(data) {
