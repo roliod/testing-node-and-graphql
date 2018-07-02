@@ -38,11 +38,9 @@ db.table('users')
       }
   `);
 
-  var userData = global.users;
-
   var getUser = function(args) {
       var username = args.username;
-      return userData.filter(user => {
+      return users.filter(user => {
           return user.username == username;
       })[0];
   }
@@ -50,9 +48,9 @@ db.table('users')
   var getUsers = function(args) {
       if (args.active) {
           var active = args.active;
-          return userData.filter(user => user.active === active);
+          return users.filter(user => user.active === active);
       } else {
-          return userData;
+          return users;
       }
   }
 
@@ -68,6 +66,6 @@ db.table('users')
       rootValue: root,
       graphiql: true
   }));
-  app.listen(4000, () => console.log('Express GraphQL Server Now Running On localhost:4000/graphql'));
+  app.listen(5000, () => console.log('Express GraphQL Server Now Running On localhost:5000/graphql'));
 
 });
